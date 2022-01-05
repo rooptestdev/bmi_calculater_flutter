@@ -19,27 +19,7 @@ class Inputpage extends StatefulWidget {
 }
 
 class _InputpageState extends State<Inputpage> {
-  Color maleCardColor = inActiveCardColor;
-  Color femaleCardColor = inActiveCardColor;
-
-  void updateColor(Gender gender) {
-    if (gender == Gender.male) {
-      if (maleCardColor == inActiveCardColor) {
-        maleCardColor = activeCardColor;
-        femaleCardColor = inActiveCardColor;
-      } else {
-        maleCardColor = inActiveCardColor;
-      }
-    }
-    if (gender == Gender.female) {
-      if (femaleCardColor == inActiveCardColor) {
-        femaleCardColor = activeCardColor;
-        maleCardColor = inActiveCardColor;
-      } else {
-        femaleCardColor = inActiveCardColor;
-      }
-    }
-  }
+  dynamic selectedGender;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +37,7 @@ class _InputpageState extends State<Inputpage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateColor(Gender.male);
+                        selectedGender = Gender.male;
                       });
                     },
                     child: ReuseCard(
@@ -65,7 +45,9 @@ class _InputpageState extends State<Inputpage> {
                         genderIcon: FontAwesomeIcons.mars,
                         gender: 'MALE',
                       ),
-                      colour: maleCardColor,
+                      colour: selectedGender == Gender.male
+                          ? activeCardColor
+                          : inActiveCardColor,
                     ),
                   ),
                 ),
@@ -73,7 +55,7 @@ class _InputpageState extends State<Inputpage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        updateColor(Gender.female);
+                        selectedGender = Gender.female;
                       });
                     },
                     child: ReuseCard(
@@ -81,7 +63,9 @@ class _InputpageState extends State<Inputpage> {
                         genderIcon: FontAwesomeIcons.venus,
                         gender: 'FEMALE',
                       ),
-                      colour: femaleCardColor,
+                      colour: selectedGender == Gender.female
+                          ? activeCardColor
+                          : inActiveCardColor,
                     ),
                   ),
                 ),
