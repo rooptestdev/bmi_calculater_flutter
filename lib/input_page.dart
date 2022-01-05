@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
@@ -34,39 +36,35 @@ class _InputpageState extends State<Inputpage> {
             child: Row(
               children: [
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReuseCard(
+                    onPress: () {
                       setState(() {
                         selectedGender = Gender.male;
                       });
                     },
-                    child: ReuseCard(
-                      childCard: IconContent(
-                        genderIcon: FontAwesomeIcons.mars,
-                        gender: 'MALE',
-                      ),
-                      colour: selectedGender == Gender.male
-                          ? activeCardColor
-                          : inActiveCardColor,
+                    childCard: IconContent(
+                      genderIcon: FontAwesomeIcons.mars,
+                      gender: 'MALE',
                     ),
+                    colour: selectedGender == Gender.male
+                        ? activeCardColor
+                        : inActiveCardColor,
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReuseCard(
+                    onPress: () {
                       setState(() {
                         selectedGender = Gender.female;
                       });
                     },
-                    child: ReuseCard(
-                      childCard: IconContent(
-                        genderIcon: FontAwesomeIcons.venus,
-                        gender: 'FEMALE',
-                      ),
-                      colour: selectedGender == Gender.female
-                          ? activeCardColor
-                          : inActiveCardColor,
+                    childCard: IconContent(
+                      genderIcon: FontAwesomeIcons.venus,
+                      gender: 'FEMALE',
                     ),
+                    colour: selectedGender == Gender.female
+                        ? activeCardColor
+                        : inActiveCardColor,
                   ),
                 ),
               ],
