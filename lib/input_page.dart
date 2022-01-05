@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'icon_content.dart';
+import 'reuse_card.dart';
 
 const bottomContainerHeight = 80.0;
 const activeCardColor = Color(0xff1d1e33);
@@ -25,11 +28,19 @@ class _InputpageState extends State<Inputpage> {
               children: [
                 Expanded(
                   child: ReuseCard(
+                    childCard: IconContent(
+                      genderIcon: FontAwesomeIcons.mars,
+                      gender: 'MALE',
+                    ),
                     colour: activeCardColor,
                   ),
                 ),
                 Expanded(
                   child: ReuseCard(
+                    childCard: IconContent(
+                      genderIcon: FontAwesomeIcons.venus,
+                      gender: 'FEMALE',
+                    ),
                     colour: activeCardColor,
                   ),
                 ),
@@ -38,6 +49,7 @@ class _InputpageState extends State<Inputpage> {
           ),
           Expanded(
             child: ReuseCard(
+              childCard: Container(),
               colour: activeCardColor,
             ),
           ),
@@ -46,11 +58,13 @@ class _InputpageState extends State<Inputpage> {
               children: [
                 Expanded(
                   child: ReuseCard(
+                    childCard: Container(),
                     colour: activeCardColor,
                   ),
                 ),
                 Expanded(
                   child: ReuseCard(
+                    childCard: Container(),
                     colour: activeCardColor,
                   ),
                 ),
@@ -64,22 +78,6 @@ class _InputpageState extends State<Inputpage> {
             width: double.infinity,
           )
         ],
-      ),
-    );
-  }
-}
-
-class ReuseCard extends StatelessWidget {
-  final Color colour;
-  const ReuseCard({Key? key, required this.colour}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-        color: colour,
-        borderRadius: BorderRadius.circular(10.0),
       ),
     );
   }
