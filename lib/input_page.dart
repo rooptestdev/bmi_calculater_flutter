@@ -3,6 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'reuse_card.dart';
 import 'constants.dart';
+import 'result_page.dart';
+import 'round_icon_button.dart';
+import 'bottom_button.dart';
 
 enum Gender {
   male,
@@ -16,8 +19,10 @@ class Inputpage extends StatefulWidget {
 }
 
 class _InputpageState extends State<Inputpage> {
-  dynamic selectedGender;
+  Gender? selectedGender;
   int height = 180;
+  int weight = 80;
+  int age = 18;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +77,7 @@ class _InputpageState extends State<Inputpage> {
               childCard: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'HEIGHT',
                     style: kTextStyle,
                   ),
@@ -85,7 +90,7 @@ class _InputpageState extends State<Inputpage> {
                         height.toString(),
                         style: kNumberStyle,
                       ),
-                      Text(
+                      const Text(
                         'cm',
                         style: kTextStyle,
                       )
@@ -98,9 +103,9 @@ class _InputpageState extends State<Inputpage> {
                       thumbColor: Colors.red,
                       overlayColor: Colors.red[100],
                       thumbShape:
-                          RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                          const RoundSliderThumbShape(enabledThumbRadius: 15.0),
                       overlayShape:
-                          RoundSliderOverlayShape(overlayRadius: 25.0),
+                          const RoundSliderOverlayShape(overlayRadius: 25.0),
                     ),
                     child: Slider(
                       value: height.toDouble(),
@@ -123,24 +128,101 @@ class _InputpageState extends State<Inputpage> {
               children: [
                 Expanded(
                   child: ReuseCard(
-                    childCard: Container(),
                     colour: kActiveCardColor,
+                    childCard: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'WEIGHT',
+                          style: kTextStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kNumberStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              iconData: FontAwesomeIcons.minus,
+                              onTap: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                            ),
+                            const SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundIconButton(
+                              iconData: FontAwesomeIcons.plus,
+                              onTap: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
                   child: ReuseCard(
-                    childCard: Container(),
+                    childCard: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'AGE',
+                          style: kTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              iconData: FontAwesomeIcons.minus,
+                              onTap: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                            ),
+                            const SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundIconButton(
+                              iconData: FontAwesomeIcons.plus,
+                              onTap: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                     colour: kActiveCardColor,
                   ),
                 ),
               ],
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(top: 10.0),
-            color: Colors.red,
-            height: kBottomContainerHeight,
-            width: double.infinity,
+          BottomButton(
+            buttonTitle: 'CALCULATOR',
+            onPress: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultPage(),
+                ),
+              );
+            },
           )
         ],
       ),
