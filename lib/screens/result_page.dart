@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'constants.dart';
-import 'input_page.dart';
-import 'reuse_card.dart';
-import 'bottom_button.dart';
+import '../constants.dart';
+import '../components/reuse_card.dart';
+import '../components/bottom_button.dart';
 
 class ResultPage extends StatelessWidget {
   const ResultPage({Key? key}) : super(key: key);
@@ -20,14 +19,11 @@ class ResultPage extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10.0),
               alignment: Alignment.bottomLeft,
-              child: Text(
+              child: const Text(
                 'Your Result',
-                style: TextStyle(
-                  fontSize: 50.0,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: kResultTextStyle,
               ),
             ),
           ),
@@ -41,27 +37,15 @@ class ResultPage extends StatelessWidget {
                 children: [
                   Text(
                     'OVERWEIGHT',
-                    style: TextStyle(
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.green,
-                      letterSpacing: 2.0,
-                    ),
+                    style: kGreenTextStyle,
                   ),
                   Text(
                     '26.7',
-                    style: TextStyle(
-                      fontSize: 100.0,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: kScoreNumberStyle,
                   ),
                   Text(
                     'All the advice will go here.Blah blah blah text here to fill the gap',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey,
-                    ),
+                    style: kAdviceTextStyle,
                     textAlign: TextAlign.center,
                   )
                 ],
