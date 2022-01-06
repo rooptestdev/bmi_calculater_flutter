@@ -19,7 +19,7 @@ class IconContent extends StatelessWidget {
           genderIcon,
           size: 80.0,
         ),
-        SizedBox(
+        const SizedBox(
           height: 10.0,
         ),
         Text(

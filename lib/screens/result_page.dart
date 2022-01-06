@@ -4,13 +4,22 @@ import '../components/reuse_card.dart';
 import '../components/bottom_button.dart';
 
 class ResultPage extends StatelessWidget {
-  const ResultPage({Key? key}) : super(key: key);
+  final String bmiResult;
+  final String bmiScore;
+  final String bmiAdvice;
+
+  const ResultPage({
+    Key? key,
+    required this.bmiAdvice,
+    required this.bmiResult,
+    required this.bmiScore,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BMI Calculator'),
+        title: const Text('BMI Calculator'),
         centerTitle: true,
       ),
       body: Column(
@@ -36,15 +45,15 @@ class ResultPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'OVERWEIGHT',
+                    bmiResult.toUpperCase(),
                     style: kGreenTextStyle,
                   ),
                   Text(
-                    '26.7',
+                    bmiScore,
                     style: kScoreNumberStyle,
                   ),
                   Text(
-                    'All the advice will go here.Blah blah blah text here to fill the gap',
+                    bmiAdvice,
                     style: kAdviceTextStyle,
                     textAlign: TextAlign.center,
                   )

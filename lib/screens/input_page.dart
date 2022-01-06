@@ -6,6 +6,7 @@ import '../constants.dart';
 import 'result_page.dart';
 import '../components/round_icon_button.dart';
 import '../components/bottom_button.dart';
+import 'package:bmi_calculater_flutter/bmi_calculator.dart';
 
 enum Gender {
   male,
@@ -21,7 +22,7 @@ class Inputpage extends StatefulWidget {
 class _InputpageState extends State<Inputpage> {
   Gender? selectedGender;
   int height = 180;
-  int weight = 80;
+  int weight = 60;
   int age = 18;
 
   @override
@@ -44,7 +45,7 @@ class _InputpageState extends State<Inputpage> {
                         selectedGender = Gender.male;
                       });
                     },
-                    childCard: IconContent(
+                    childCard: const IconContent(
                       genderIcon: FontAwesomeIcons.mars,
                       gender: 'MALE',
                     ),
@@ -60,7 +61,7 @@ class _InputpageState extends State<Inputpage> {
                         selectedGender = Gender.female;
                       });
                     },
-                    childCard: IconContent(
+                    childCard: const IconContent(
                       genderIcon: FontAwesomeIcons.venus,
                       gender: 'FEMALE',
                     ),
@@ -216,10 +217,17 @@ class _InputpageState extends State<Inputpage> {
           BottomButton(
             buttonTitle: 'CALCULATOR',
             onPress: () {
+              BMICalculator bmiCalc =
+                  BMICalculator(weight: weight, height: height);
+
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ResultPage(),
+                  builder: (context) => ResultPage(
+                    bmiScore: bmiCalc.calcBMI(),
+                    bmiResult: bmiCalc.bmiResult(),
+                    bmiAdvice: bmiCalc.bmiAdvice(),
+                  ),
                 ),
               );
             },
